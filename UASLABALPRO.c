@@ -171,3 +171,32 @@ void pinjamBuku() {
         printf("Buku tidak ditemukan.\n\n");
     }
 }
+
+
+void kembalikanBuku() {
+    char judul[100];
+    int found = 0;
+    
+    printf("Masukkan judul buku yan akan dikembalikan: ");
+    scanf("%[^\n]", judul);
+    clearInputBuffer();
+    
+    for (int i = 0; i < jumlahBuku; i++) {
+        if (strcmp(judul, daftarBuku[i].judul) == 0) {
+            if (daftarBuku[i].status == 0) {
+                printf("Buku dengan judul %s sudah tersedia\n", judul);
+                found = 1;
+                break;
+            } else {
+                daftarBuku[i].status = 0;
+                printf("Buku dengan judul %s telah dikembalikan\n", judul);
+                found = 1;
+                break;
+            }
+        }
+    }
+    
+    if (!found) {
+        printf("Buku dengan judul %s tidak ditemukan\n", judul);
+    }
+}
